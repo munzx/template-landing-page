@@ -1,0 +1,163 @@
+<section class="w-full h-full min-h-screen p-0 sm:pl-2 sm:pr-2">
+    <div
+        class="w-1/1 md:w-1/2 m-auto shadow-2xl bg-gradient-to-b from-topgradiant via-middlegradiant to-bottomgradiant">
+        <div class="w-full relative">
+            <div class="snowflakes" aria-hidden="true">
+                <div class="snowflake">
+                    ❅
+                </div>
+                <div class="snowflake">
+                    ❆
+                </div>
+                <div class="snowflake">
+                    ❅
+                </div>
+                <div class="snowflake">
+                    ❆
+                </div>
+                <div class="snowflake">
+                    ❅
+                </div>
+                <div class="snowflake">
+                    ❆
+                </div>
+                <div class="snowflake">
+                    ❅
+                </div>
+                <div class="snowflake">
+                    ❆
+                </div>
+                <div class="snowflake">
+                    ❅
+                </div>
+                <div class="snowflake">
+                    ❆
+                </div>
+                <div class="snowflake">
+                    ❅
+                </div>
+                <div class="snowflake">
+                    ❆
+                </div>
+            </div>
+            <img class="w-full" src="../../assets/header.png" />
+        </div>
+        <form *ngIf="show" name="subscriber" #subscriber="ngForm" (ngSubmit)="onSubmit(subscriber)"
+            class="w-full p-2 flex flex-col pt-4" novalidate>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute">*</span>
+                <input class="w-full p-4 mt-2 bg-transparent border-4 border-white rounded-lg text-white" type="text"
+                    name="fullname" placeholder="Full Name" #fullname="ngModel" maxlength="30" minlength="2" ngModel
+                    required/>
+                <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)" class="alert alert-danger">
+                    <div *ngIf="fullname.errors.required">
+                        <p class=" text-white italic">Name is required.</p>
+                    </div>
+                    <div *ngIf="fullname.errors.minlength">
+                        <p class=" text-white italic">Name cannot be more than 30 characters long.</p>
+                    </div>
+                    <div *ngIf="fullname.errors.minlength">
+                        <p class=" text-white italic">Name must be at least 2 characters long.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute">*</span>
+                <input class="w-full p-4 mt-2 bg-transparent border-4 border-white rounded-lg text-white" type="email"
+                    name="email" placeholder="Email Address" value="" #email="ngModel" ngModel [email]="true"
+                    required />
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        <p class=" text-white italic">Email address field is required.</p>
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                        <p class=" text-white italic">A valid email address is required.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute">*</span>
+                <input class="w-full p-4 mt-2 bg-transparent border-4 border-white rounded-lg text-white" type="text"
+                    [pattern]="mobNumberPattern" name="mobile" placeholder="Mobile Phone" #phone="ngModel" value=""
+                    ngModel required />
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                    <div *ngIf="phone.errors.required">
+                        <p class=" text-white italic">Phone number field is required.</p>
+                    </div>
+                    <div *ngIf="phone.invalid">
+                        <p class=" text-white italic">A ten digits valid phone number is required.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute shadow-xl">*</span>
+                <select class="w-full p-4 mt-2 bg-transparent border-4 border-white rounded-lg text-white"
+                    style="padding: 18px;" name="nationality" #nationality="ngModel" ngModel required>
+                    <option value="">Nationality</option>
+                    <option *ngFor="let country of countryList" value="{{country.country}}">{{country.country}}</option>
+                </select>
+                <div *ngIf="nationality.invalid && (nationality.dirty || nationality.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="nationality.errors.required">
+                        <p class=" text-white italic">Nationality field is required.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="submited" class="w-full text-center">
+                <img class="w-16 m-auto mt-16" src="../../assets/spinner.svg" />
+            </div>
+            <div class="w-full text-center mt-8">
+                <input type="checkbox" class="form-checkbox rounded-0 bg-blue-600" name="privacy_policy" ngModel>
+                <span class="ml-2 form-checkbox text-gray-900 text-white font-bold text-center">
+                    <a href="https://www.dubaioutletmall.com/policy" target="_blank">
+                        I agree to the <span class="font-bold underline">privacy policy</span>
+                    </a>
+                </span>
+            </div>
+            <div class="w-full text-center mt-2">
+                <input type="checkbox" class="form-checkbox rounded-0 bg-blue-600" name="recieve_newsletter" ngModel>
+                <span class="ml-2 form-checkbox text-gray-900 text-white font-bold text-center">
+                    I agree to recieve newsletters
+                </span>
+            </div>
+            <input *ngIf="!submited"
+                class="m-auto border-4 border-blue-600 rounded-md shadow-sm hover:shadow-xl p-2 pl-8 pr-8 mt-2 font-bold text-2xl cursor-pointer"
+                type="submit" value="SUBMIT" style="background-color: rgba(255, 255, 255, 0.7);"
+                [disabled]="!subscriber.valid && !submited" />
+        </form>
+        <div *ngIf="success" class="w-full mt-8 pb-8">
+            <h1 style="color: #dd8526;" class="text-center font-bold leading-relaxed tracking-wider text-3xl">
+                Congratulations!
+                <br />
+                Santa has left a surprise gift for you. Show this message at the customer service desk to receive your
+                gift!
+            </h1>
+        </div>
+        <div *ngIf="error.length" class="w-full mt-8">
+            <h1 style="color: #dd8526;" class="text-center font-bold leading-relaxed tracking-wider text-2xl">
+                {{error}}
+            </h1>
+        </div>
+        <div *ngIf="show" class="w-full">
+            <p class="text-center text-xl p-4 text-blue-700 font-bold">Terms & Conditions:</p>
+            <ul class="list-none list-inside leading-relaxed tracking-wider p-4 pt-0 text-blue-700 font-bold text-sm">
+                <li>Post submission a code will be sent to your valid email address. Code will be valid from
+                    23<sup>rd</sup> to 26<sup>th</sup> December 2020.</li>
+                <li>Generated Message/Code to be shared at any customer service desk</li>
+                <li>One Gift Per Registration only.</li>
+            </ul>
+        </div>
+        <!-- <div class="w-full flex flex-wrap mt-8 bg-white p-2 pt-4 pb-8">
+            <div class="w-1/3">
+                <img src="../../assets/welt.png" class=" w-full" />
+            </div>
+            <div class="w-1/3">
+                <img src="../../assets/bab_al_bahr.png" class=" w-full" />
+            </div>
+            <div class="w-1/3">
+                <img src="../../assets/dusti.png" class=" w-full" />
+            </div>
+        </div> -->
+    </div>
+</section>
