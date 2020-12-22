@@ -450,6 +450,14 @@ img {
   padding-left: 2rem;
 }
 
+.pt-12 {
+  padding-top: 3rem;
+}
+
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
 .pt-20 {
   padding-top: 5rem;
 }
@@ -550,6 +558,10 @@ img {
 
 .w-16 {
   width: 4rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .w-64 {
