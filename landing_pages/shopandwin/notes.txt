@@ -1,0 +1,16 @@
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --proxy-config proxy.conf.json & ngtw watch",
+    "build": "ngtw build --purge && ng build -c production",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "prestart": "ngtw build"
+  },
+
+
+
+
+  "scripts": {
+    "start": "node ./app.js"
+  },

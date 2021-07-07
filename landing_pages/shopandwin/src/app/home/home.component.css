@@ -1,0 +1,145 @@
+* {
+    z-index: 999;
+}
+
+label {
+    position: relative;
+}
+label > input[type="checkbox"] {
+    display: none;
+}
+label > input[type="checkbox"] + *::before {
+    content: "";
+    display: inline-block;
+    vertical-align:middle;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0;
+    border-radius: 10%;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-color: #242c68;
+}
+label > input[type="checkbox"]:checked + * {
+    color: #242c68;
+}
+label > input[type="checkbox"]:checked + *::before {
+    position: inherit;
+    content: "";
+    color: white;
+    background: #242c68;
+    border-color: #242c68;
+}
+
+/* basic layout */
+label > input[type="checkbox"] + * {
+    display: inline-block;
+    color: gray;
+}
+
+input, select, textarea{
+    color: #242c68;
+    font-weight: 900;
+}
+
+textarea:focus, input:focus {
+    color: #242c68;
+    font-weight: 900;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #242c68;
+    opacity: 1; /* Firefox */
+    font-weight: 900;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #242c68;
+    font-weight: 900;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #242c68;
+    font-weight: 900;
+  }
+
+p, ul, span, li, input {
+    color: #242c68;
+    font-weight: 900;
+}
+
+
+.move{
+    animation: move 12s linear infinite;
+    z-index: -999;
+}
+
+.move-two {
+    animation: move 18s linear infinite;
+    z-index: -999;
+}
+
+.move-three {
+    animation: move 25s linear infinite;
+    z-index: -999;
+}
+
+.move-four {
+    animation: move 40s linear infinite;
+    z-index: -999;
+}
+
+.spin-red {
+    transform: rotate(-45deg);
+    animation: spin-red 10s linear infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(calc(1% - 100vw));
+    }
+
+    0% {
+        transform: translateX(calc(1% - 50vw));
+    }
+
+    100% {
+        transform: translateX(calc(1% + 100vw));
+    }
+}
+
+@keyframes spin-blue {
+    0% {
+        transform: rotate(0deg) translateY(-60%);
+    }
+
+    20% {
+        transform: rotate(0deg) translateY(-25%);
+    }
+
+    30%, 70% {
+        transform: rotate(0deg) translateY(-60%);
+    }
+
+    80%, 100% {
+        transform: rotate(0deg) translateY(-60%);
+    }
+}
+
+@keyframes spin-red {
+    0% {
+        transform: rotate(-45deg) translateY(-60%);
+    }
+
+    20% {
+        transform: rotate(-45deg) translateY(-25%);
+    }
+
+    30%, 70% {
+        transform: rotate(-45deg) translateY(-60%);
+    }
+
+    80%, 100% {
+        transform: rotate(-45deg) translateY(-60%);
+    }
+}

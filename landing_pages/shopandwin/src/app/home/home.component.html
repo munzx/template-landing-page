@@ -1,0 +1,168 @@
+<section class="w-full h-full min-h-screen p-0 sm:pl-2 sm:pr-2">
+    <div class="w-full relative z-0">
+        <div class=" fixed">
+            <img src="../../assets/images/cloud1.png" class="move" />
+        </div>
+        <div class=" fixed">
+            <img src="../../assets/images/cloud2.png" class="move-two" />
+        </div>
+        <div class=" fixed">
+            <img src="../../assets/images/cloud1.png" class="move-three" />
+        </div>
+        <div class=" fixed">
+            <img src="../../assets/images/cloud2.png" class="move-four" />
+        </div>
+    </div>
+
+    <div class="w-1/1 md:w-1/2 m-auto shadow-2xl bg-gradient-to-b from-topgradiant via-middlegradiant to-bottomgradiant z-50">
+        <div class="flex w-1/1 md:w-1/2 m-auto">
+            <img src="../../assets/images/logo.png" class="w-48 m-auto" />
+        </div>
+        <div class="w-full">
+            <div class="w-full m-auto mt-12 pl-12 pr-8 sm:pl-20 sm:pr-20 md:pl-32 md:pr-32">
+                <img src="../../assets/images/shop_and_win.png" class="w-full" />
+            </div>
+        </div>
+        <form *ngIf="show" name="subscriber" #subscriber="ngForm" (ngSubmit)="onSubmit(subscriber)"
+            class="w-full p-2 flex flex-col pt-4 mt-8" novalidate>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute">*</span>
+                <input class="w-full p-4 mt-2 bg-transparent rounded-lg" style="border: #242c68 solid 2px;" type="text" name="fullname" placeholder="Full Name"
+                    #fullname="ngModel" maxlength="30" minlength="2" ngModel required />
+                <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)" class="alert alert-danger">
+                    <div *ngIf="fullname.errors.required">
+                        <p class=" text-white italic">Name is required.</p>
+                    </div>
+                    <div *ngIf="fullname.errors.minlength">
+                        <p class=" text-white italic">Name cannot be more than 30 characters long.</p>
+                    </div>
+                    <div *ngIf="fullname.errors.minlength">
+                        <p class=" text-white italic">Name must be at least 2 characters long.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute">*</span>
+                <input class="w-full p-4 mt-2 bg-transparent rounded-lg" style="border: #242c68 solid 2px;" type="email" name="email" placeholder="Email Address"
+                    value="" #email="ngModel" ngModel [email]="true" required />
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        <p class=" text-white italic">Email address field is required.</p>
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                        <p class=" text-white italic">A valid email address is required.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute">*</span>
+                <input class="w-full p-4 mt-2 bg-transparent rounded-lg" style="border: #242c68 solid 2px;" type="text" [pattern]="mobNumberPattern" name="mobile"
+                    placeholder="Mobile#" #phone="ngModel" value="" ngModel required />
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                    <div *ngIf="phone.errors.required">
+                        <p class=" text-white italic">Phone number field is required.</p>
+                    </div>
+                    <div *ngIf="phone.invalid">
+                        <p class=" text-white italic">A ten digits valid phone number is required.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <span class="text-red-500 text-2xl absolute shadow-xl">*</span>
+                <select class="w-full p-4 mt-2 bg-transparent rounded-lg" style="border: #242c68 solid 2px!important;padding: 18px;" name="nationality"
+                    #nationality="ngModel" ngModel required>
+                    <option value="">Nationality</option>
+                    <option *ngFor="let country of countryList" value="{{country.country}}">{{country.country}}</option>
+                </select>
+                <div *ngIf="nationality.invalid && (nationality.dirty || nationality.touched)" class="alert alert-danger">
+                    <div *ngIf="nationality.errors.required">
+                        <p class=" text-white italic">Nationality field is required.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="submited" class="w-full text-center">
+                <img class="w-16 m-auto mt-16" src="../../assets/spinner.svg" />
+            </div>
+
+            <div class="w-full flex items-baseline mt-8 pl-2 pr-2">
+                <div class="w-1/2">
+                    <label>
+                        <input type="checkbox" class="form-checkbox rounded-0 text-left" name="privacy_policy" ngModel>
+                        <span class="form-checkbox font-bold text-center cursor-pointer">
+                            I agree to the 
+                            <a href="https://www.dubaioutletmall.com/policy" target="_blank">
+                                 <span class="font-bold underline">privacy policy</span>
+                            </a>
+                        </span>
+                    </label>
+                </div>
+                <div class="w-1/2">
+                    <label>
+                        <input type="checkbox" class="form-checkbox rounded-0 text-right" name="recieve_newsletter" ngModel>
+                        <span class="form-checkbox font-bold text-center cursor-pointer">
+                            I agree to recieve newsletters
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+              
+            <div *ngIf="show" class="w-full mt-4 p-4 pl-2 pr-2">
+                <p class="font-extrabold text-base inset-0 mt-8">Terms & Conditions:</p>
+                <ul class=" list-decimal text-sm leading-relaxed tracking-wider pl-4 pr-4 items-baseline">
+                    <li>Post submission a code will be sent to your valid email address.</li>
+                    <li>Code will be valid from 8<sup>th</sup> April – 31<sup>st</sup> May 2021</li>
+                    <li>Generated Message/Code to be shared at any customer service desk along with receipt to enter the draw.</li>
+                    <li>One registration per customer.</li>
+                </ul>
+            </div>
+
+            <input *ngIf="!submited"
+                class="m-auto rounded-md shadow-sm hover:shadow-xl p-2 pl-8 pr-8 mt-8 font-extrabold text-2xl cursor-pointer"
+                type="submit" value="SUBMIT" style="background-color: #92cce3;color: #242c68;" [disabled]="!subscriber.valid && !submited" />
+        </form>
+        <div *ngIf="success" class="w-full mt-8 pb-8">
+            <h1 style="color: #242c68;" class="text-center font-bold leading-relaxed tracking-wider text-3xl">
+                THANK YOU FOR REGISTERING!
+            </h1>
+            <h1 class="text-center text-white font-bold leading-relaxed tracking-wider text-2xl pr-2 pl-2">
+                Please check your mail inbox for the generated code.
+            </h1>
+        </div>
+        <div *ngIf="error.length" class="w-full mt-8">
+            <h1 style="color: #242c68;" class="text-center font-bold leading-relaxed tracking-wider text-2xl">
+                {{error}}
+            </h1>
+        </div>
+        <div class="w-full mt-8">
+            <img src="../../assets/images/footer.png" class="w-full object-cover inset-0" />
+        </div>
+        <div class="w-full flex flex-wrap mt-2 p-2 pt-4 pb-8 justify-around items-baseline">
+            <div class="w-1/4">
+                <img src="../../assets/images/partners/utrition.png" class=" w-32" />
+            </div>
+            <div class="w-1/4">
+                <img src="../../assets/images/partners/gg.png" class=" w-32" />
+            </div>
+            <div class="w-1/4">
+                <img src="../../assets/images/partners/Kaya.png" class=" w-32" />
+            </div>
+            <div class="w-1/4">
+                <img src="../../assets/images/partners/silkor.png" class=" w-32" />
+            </div>
+            <div class="w-1/4">
+                <img src="../../assets/images/partners/drbatra.png" class=" w-32" />
+            </div>
+            <div class="w-1/4">
+                <img src="../../assets/images/partners/essentra.png" class=" w-32" />
+            </div>
+            <div class="w-1/4">
+                <img src="../../assets/images/partners/vlcc.png" class=" w-32" />
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
